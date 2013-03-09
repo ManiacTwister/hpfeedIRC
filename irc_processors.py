@@ -106,7 +106,7 @@ def dionaea_connections(identifier, payload, gi):
 	if dec.local_port in SERVICES:
 		service = "(%s)" % SERVICES[dec.local_port]
 	else:
-		service = ""
+		service = "(Port: %d)" % dec.local_port
 	return (MSG_TEMPLATE % ('dionaea.connections', geoloc['city'], geoloc['country_name'], geoloc['latitude'], geoloc['longitude'], geoloc2['city'], geoloc2['country_name'], geoloc2['latitude'], geoloc2['longitude'], service))
 	#return {'type': 'dionaea.connections', 'sensor': identifier, 'time': timestr(tstamp), 'latitude': geoloc['latitude'], 'longitude': geoloc['longitude'], 'source': getSourceAddr(dec.remote_host, dec.local_host), 'latitude2': geoloc2['latitude'], 'longitude2': geoloc2['longitude'], 'dest': dec.local_host, 'md5': dec.md5,
 #'city': geoloc['city'], 'country': geoloc['country_name'], 'countrycode': geoloc['country_code'],
