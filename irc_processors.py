@@ -13,9 +13,11 @@ SERVICES = {
 	21: 'FTP',
 	445: 'SMB',
 	22: 'SSH',
+	1433: 'MSSQL',
+	5060: 'SIP',
 }
 
-MSG_TEMPLATE = "\x03\x34<\x03%s\x03\x34>\x03 New attack from \x02%s, %s\x02 (%f,%f) to \x02%s, %s\x02 (%f,%f) %s"
+MSG_TEMPLATE = "\x03\x34<\x03%s\x03\x34>\x03 New attack from \x02%s, %s\x02 (%.2f,%.2f) to \x02%s, %s\x02 (%.2f,%.2f) %s"
 class ezdict(object):
 	def __init__(self, d):
 		self.d = d

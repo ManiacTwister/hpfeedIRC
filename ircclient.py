@@ -39,6 +39,7 @@ PROCESSORS = {
 IRC_SERVER = 'irc.server.tld'
 IRC_PORT = 6669
 IRC_NICKNAME = 'Hpfeeds'
+IRC_NICK_PASSWORD = 'test' # only works for nickserv authentication, disable with False
 IRC_PASSWORD = None
 IRC_USERNAME = None
 IRC_SSL = True
@@ -92,7 +93,10 @@ class HPFeed:
 		procs = PROCESSORS.get(channel, [])
 		p = None
 		for p in procs:
-			m = p(identifier, payload, self.gi)
+			try:
+				m = p(identifier, payload, self.gi)
+			except:
+				print "[hpfeed] Invalid message %s" % payload
 			try: tmp = json.dumps(m)
 			except: print 'DBG', m
 			if m != None: sendToIrc(m)
@@ -101,7 +105,7 @@ class HPFeed:
 			logger.warning('[hpfeed] not p?')
 	def on_error(self, payload):
 		global hpc
-		logger.error('[hpfeed] errormessage from server: %s' & payload)
+		logger.error('[hpfeed] errormessage from server: %s' % payload)
 		hpc.stop()
 
 class IRC_Client:
@@ -131,11 +135,16 @@ class IRC_Client:
 		except (KeyboardInterrupt, SystemExit):
 			sys.exit(0)
 
-	def sendToIrc(self, msg):
-		self.c.privmsg(IRC_CHANNEL, msg)
+	def sendToIrc(self, msg, user=False):
+		if not user:
+			user = IRC_CHANNEL
+		self.c.privmsg(user, msg)
+
 
 	##### IRC EVENTS #####
 	def on_connect(self, connection, event):
+		if IRC_NICK_PASSWORD != False:
+			self.sendToIrc("IDENTIFY %s" % IRC_NICK_PASSWORD)
 		if irc.client.is_channel(IRC_CHANNEL):
 			connection.join(IRC_CHANNEL)
 			self.sendToIrc("Hello!")
