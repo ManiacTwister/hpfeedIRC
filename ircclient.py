@@ -97,6 +97,7 @@ class HPFeed:
 				m = p(identifier, payload, self.gi)
 			except:
 				print "[hpfeed] Invalid message %s" % payload
+				return
 			try: tmp = json.dumps(m)
 			except: print 'DBG', m
 			if m != None: sendToIrc(m)
