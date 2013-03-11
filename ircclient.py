@@ -139,7 +139,11 @@ class IRC_Client:
 	def sendToIrc(self, msg, user=False):
 		if not user:
 			user = IRC_CHANNEL
-		self.c.privmsg(user, msg)
+		try:
+			self.c.privmsg(user, msg)
+		except:
+			logger.info("[IRC] could not send to irc: ")
+			traceback.print_exc()
 
 
 	##### IRC EVENTS #####
