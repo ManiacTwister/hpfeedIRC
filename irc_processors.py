@@ -15,6 +15,9 @@ SERVICES = {
 	22: 'SSH',
 	1433: 'MSSQL',
 	5060: 'SIP',
+	5061: 'SIP',
+	69: 'tftp',
+	135: 'epmap',
 }
 
 MSG_TEMPLATE = "\x03\x34<\x03%s\x03\x34>\x03 New attack from \x02%s, %s\x02 (%.2f,%.2f) to \x02%s, %s\x02 (%.2f,%.2f) %s"
