@@ -144,8 +144,8 @@ class IRC_Client:
 
 	##### IRC EVENTS #####
 	def on_connect(self, connection, event):
-		if IRC_NICK_PASSWORD != False:
-			self.sendToIrc("IDENTIFY %s" % IRC_NICK_PASSWORD)
+		if IRC_NICK_PASSWORD != 'False':
+			self.sendToIrc("IDENTIFY %s" % IRC_NICK_PASSWORD, "NickServ")
 		if irc.client.is_channel(IRC_CHANNEL):
 			connection.join(IRC_CHANNEL)
 			self.sendToIrc("Hello!")
