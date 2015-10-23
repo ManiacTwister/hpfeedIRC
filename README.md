@@ -2,7 +2,7 @@ hpfeedIRC
 =========
 
 ## About
-hpfeedIRC is an IRC notifier for the hpfeeds publish-subscribe protocol. You need an hpfeed instance on which you can connect to use this bot.
+hpfeedIRC is a IRC notifier for the hpfeeds publish-subscribe protocol. You need an hpfeed instance on which you can connect to use this bot.
 
 ## Installation
 
@@ -14,7 +14,7 @@ pip install irc
 ```
 
 ###Usage
-Before you can use the bot you have to configure you hpfeeds and irc server settings in ircclient.py
+Before you can use the bot you have to configure your hpfeeds and irc server settings in ircclient.py
 
 ```bash
 cd hpfeedIRC
